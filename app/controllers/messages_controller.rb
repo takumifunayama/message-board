@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show,:edit,:update, :destroy]
   def index
-    @messages = Message.order(id: :desc).page(params[:page]).per(5)
+    @messages = Message.order(id: :desc).page(params[:page]).per(25)
   end
   
   def show
