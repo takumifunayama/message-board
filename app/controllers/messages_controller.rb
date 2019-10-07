@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show,:edit,:update, :destroy]
   def index
-    @messages = Message.all
+    @messages = Message.order(id: :desc).page(params[:page]).per(5)
   end
   
   def show
@@ -40,7 +40,7 @@ class MessagesController < ApplicationController
   def destroy
     @message.destroy
     flash[:success] ='Messageは正常に削除されました'
-    redirect_to message_url
+    redirect_to messages_url
   end
 end
 
